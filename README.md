@@ -1,4 +1,4 @@
-This repository contains an R script needed for performing a replication of "[The Long Term Benefits of Vaccination Campaigns: Evidence from Measles](https://web.archive.org/web/20230502002136/https://www.haverford.edu/sites/default/files/Department/Economics/econ-colloquium-Measles_Mexico_Feb2023.pdf)", Atwood and Pearlman (2023).
+This repository contains the code and data from my [replication](https://michaelwiebe.com/assets/measles_mexico/ap_replication.pdf) of "[The Long Term Benefits of Vaccination Campaigns: Evidence from Measles](https://web.archive.org/web/20230502002136/https://www.haverford.edu/sites/default/files/Department/Economics/econ-colloquium-Measles_Mexico_Feb2023.pdf)", Atwood and Pearlman (2023).
 
 There are three sources of data.
 First, I use Mexican census data to measure adult economic outcomes.

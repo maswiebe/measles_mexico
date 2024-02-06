@@ -291,13 +291,13 @@ gc()
 # cleaning
 
 dep_vars <- c('loginc', 'empl', 'yrschool')
-rhs <- ' ~ i(birthyr, measles_pc, ref=1956) | marst + urban_d + birthyr + bplmx + year'
+rhs <- ' ~ i(birthyr, measles_pc, ref=1957) | marst + urban_d + birthyr + bplmx + year'
 rhs_spline <- ' ~ l1 + l2 + l3 | marst + urban_d + birthyr + bplmx + year'
 
-# 16-year windows: 1941-1957, 1957-1973, 1973-1989
+# 16-year windows: 1941-1957, 1958-1973, 1973-1989
 df <- df %>% 
   mutate(
-    kink1 = 1957,
+    kink1 = 1958,
     kink2 = 1973,
     l1 = birthyr*measles_pc,
     l2 = pmax(0, birthyr-kink1)*measles_pc, # should be max, not min; typo in Roodman
@@ -305,11 +305,11 @@ df <- df %>%
   )
 min_cohort <- min(df$birthyr)
 
-kink1 <- 1957
-kink2 <- 1973
+kink1 <- unique(df$kink1)
+kink2 <- unique(df$kink2)
 # sample: 1925-1997, since min cohort=1925 is age 65 in 1990
-birth_year <- c(1925:1955, 1957:1997) # omit 1956
-birth_year1989 <- c(1941:1955, 1957:1989) # length 48, 1941-1989
+birth_year <- c(1925:1956, 1958:1997) # omit 1957
+birth_year1989 <- c(1941:1956, 1958:1989) # length 48, 1941-1989
 
 spline_fun <- function(b0,x,splines) {
   b0 + coef(splines)[1]*(x-1960) + coef(splines)[2]*pmax(x-kink1,0) + coef(splines)[3]*pmax(x-kink2,0)
@@ -330,14 +330,14 @@ for (i in dep_vars) {
   print(proc.time() - start)
   gc()
   
-  png(file=paste0("output/figures/es_", i, ".png"), res=72)
+  png(file=paste0("output/figures/es_", i, ".png"), res=300, width=6, height=6, units='in')
   iplot(es, xlab = 'Birth year', main = '', ylab='')
-  abline(v=c(1956.5,1973.5), col='red')
+  abline(v=c(1957.5,1973.5), col='red')
   dev.off()
   
-  points <- coef(es) # 1925-1997, missing 1956
+  points <- coef(es) # 1925-1997, missing 1957
   rm(es)
-  points1989 <- points[17:64] # restrict to 1941-1989; length 48, because missing 1956
+  points1989 <- points[17:64] # restrict to 1941-1989; length 48, because missing 1957
   # start at 17 = 1941, end at 64 = 1989
   
   gc()
@@ -359,10 +359,10 @@ for (i in dep_vars) {
   
   # plot point estimates, overlay spline fit
   # missing omitted year
-  png(file=paste0("output/figures/spline_", i, ".png"), res=72)
+  png(file=paste0("output/figures/spline_", i, ".png"), res=300, width=6, height=6, units='in')
   plot(birth_year, points, xlab='Birth year', ylab='') # plot point estimates
   lines(birth_year1989, y_vals+shift, col='red') # overlay shifted splines
-  abline(v=c(1957,1973), lty = 'dashed')
+  abline(v=c(1958,1973), lty = 'dashed')
   mtext(paste0('p = ', sprintf('%.2f', round(spline_fit$coeftable[2,4],2)),', ', sprintf('%.2f', round(spline_fit$coeftable[3,4],2))), side=1, line=4, adj=0) # note p-values; two decimal places
   dev.off()
   
