@@ -32,6 +32,6 @@ Third, I hand-collect disease data from PDFs of the annual epidemiology bulletin
 [1977](https://web.archive.org/web/20230501234734/https://saludpublica.mx/index.php/spm/article/view/994/980)
 [1978](https://web.archive.org/web/20230501234823/https://saludpublica.mx/index.php/spm/article/view/899/885)
 
-The latter two datasets are included in `data/`.
+The latter two datasets are included in 'data/'.
 
 To rerun the analyses, execute the R script `run.r`. Note that you need to set the path in `run.r` on line 10 to define the location of the folder that contains this script.
