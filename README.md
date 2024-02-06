@@ -5,11 +5,13 @@ First, I use Mexican census data to measure adult economic outcomes.
 To access this data, apply for an account from [IPUMS](https://international.ipums.org/international/), then run the following query:
 - country: Mexico
 - years: 1970, 1990, 1995, 2000, 2010, 2015
-- variables: 
+- variables:
     - household: geo1_mx (state), urban
     - person: age, sex, marst, nativity, bplmx, yrschool, lit, empstat, inctot, incearn
+Save the xml file in 'data/' as 'ipumsi_00025.xml'.
 
-Note that the IPUMS extract includes an `.R` file with functions to read the data: `read_ipums_ddi()`, which reads an `.xml` file, and `read_ipums_micro()`, which reads the micro data. You first need to install the R library `ipumsr`.
+Note that the IPUMS extract includes an `.R` file with functions to read the data: `read_ipums_ddi()`, which reads an `.xml` file, and `read_ipums_micro()`, which reads the micro data. 
+You first need to install the R library `ipumsr`.
 
 Second, I use CPI data from INEGI to adjust for inflation. Download the CSV file [here](https://web.archive.org/web/20230502002120/https://www.inegi.org.mx/app/tabulados/default.aspx?nc=ca55_2018&idrt=137&opc=t) (years 1969-2023).
 
