@@ -7,9 +7,9 @@ To access this data, apply for an account from [IPUMS](https://international.ipu
 - years: 1970, 1990, 1995, 2000, 2010, 2015
 - variables:
     - household: geo1_mx (state), urban
-    - person: age, sex, marst, nativity, bplmx, yrschool, lit, empstat, inctot, incearn  
-Save the xml file in 'data/' as 'ipumsi_00025.xml'.
+    - person: age, sex, marst, nativity, bplmx, yrschool, lit, empstat, inctot, incearn
 
+Save the xml file in 'data/' as 'ipumsi_00025.xml'.
 Note that the IPUMS extract includes an `.R` file with functions to read the data: `read_ipums_ddi()`, which reads an `.xml` file, and `read_ipums_micro()`, which reads the micro data. 
 You first need to install the R library `ipumsr`.
 
